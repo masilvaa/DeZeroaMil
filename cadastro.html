@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro da conta</title>
+    <link rel="stylesheet" href="cadastro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Cadastrar conta</h1> 
+    <div class="form-container">
+      <input type="text" id="nome" placeholder="Nome da conta">
+      <input type="text" id="email" placeholder="Email da conta">
+      <input type="number" id="senha" placeholder="Senha da conta">
+      <div class="caixabotao">
+        <button class="botao" onclick="cadastrarconta()">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+  <button onclick="window.location.href='inicio.html'">Voltar</button>
+
+  <script src="secrets.js"></script>
+  <script src="firebase.js"></script>
+  <script src="cadastro.js"></script>
+</body>
+</html>
