@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Zero a Mil</title>
+    <link rel="stylesheet" href="tarefas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+</head>
+
+<body>
+
+    <button class="voltar-btn" onclick="window.location.href='inicio.html'">Voltar</button>
+  
+    <div class="container">
+
+        <div class="card">
+            <h2>Lista de tarefas</h2>
+
+            <button class="add-btn">+</button>
+        </div>
+
+        <div class="card">
+            <h2>Concluídas anteriormente</h2>
+
+        </div>
+    </div>
+
+    <div class="menuinferior">
+        <button><img src="fotos\casa.png" onclick="window.location.href='home.html'" alt="Inicio"></button>
+        <button><img src="fotos\tarefas.png" onclick="window.location.href='tarefas.html'" alt="Tarefas"></button>
+        <button><img src="fotos\agenda.png" onclick="window.location.href='agenda.html'" alt="Agenda"></button>
+    </div>
+
+    <script src="secrets.js"></script>
+    <script src="firebase.js"></script>
+    <script src="tarefas.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+body {
+    background-color: #abbaff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+    display: flex;
+    gap: 70px;
+    margin-bottom: 60px;
+}
+
+.card {
+    background-color: #5170ff;
+    padding: 25px;
+    border-radius: 20px;
+    width: 500px;
+    min-height: 500px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.card h2 {
+    text-align: center;
+    color: #00188e;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.add-btn {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    background-color: #a9b6f3;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #00188e;
+}
+.add-btn:hover {
+    background-color: #3f51b5;
+    color: #a9b6f3;
+}
+
+.menuinferior {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.menuinferior button {
+    background-color: #5170ff;
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.menuinferior button:hover {
+    background-color: #283593;
+}
+
+.menuinferior img {
+    width: 25px;
+    height: 25px;
+}
+
+.voltar-btn {
+    position: absolute;
+    top: 60px;
+    left: 40px;
+    background-color: #5170ff;
+    color: #00188e;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 30px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.voltar-btn:hover {
+    background-color: #3f51b5; 
+}

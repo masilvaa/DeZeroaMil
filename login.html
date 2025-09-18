@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>De Zero a Mil</title>
     <link rel="stylesheet" href="login.css">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
@@ -12,7 +12,24 @@
 </head>
 
 <body>
-    <h1>Login</h1>
+  <header>
+    <h1>De Zero a Mil</h1>
+    <p>Do planejamento à conquista: seu caminho para o sucesso no ENEM.</p>
+  </header>
+
+    <button class="voltar-btn" onclick="window.location.href='inicio.html'">Voltar</button>
+    
+    <div class="form-container">
+      <div class="avatar"></div>
+      <input type="text" id="email" placeholder="Insira o email da sua conta">
+      <input type="password" id="senha" placeholder="Insira a senha da conta">
+      <button class="botao-logar" onclick="logarconta()">Fazer login</button>
+      
+      <p class="cadastro">
+        <a href="cadastro.html">Não tem conta? Cadastrar-se</a>
+      </p>
+
+    </div>
     
   <script src="secrets.js"></script>
   <script src="firebase.js"></script>

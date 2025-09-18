@@ -2,28 +2,33 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro da conta</title>
+    <title>De Zero a Mil</title>
     <link rel="stylesheet" href="cadastro.css">
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Cadastrar conta</h1> 
-    <div class="form-container">
+  <header>
+    <h1>De Zero a Mil</h1>
+    <p>Do planejamento à conquista: seu caminho para o sucesso no ENEM.</p>
+  </header>
+
+  <button class="voltar-btn" onclick="window.location.href='inicio.html'">Voltar</button>
+
+  <div class="form-container">
+      <div class="avatar"></div>
       <input type="text" id="nome" placeholder="Nome da conta">
-      <input type="text" id="email" placeholder="Email da conta">
-      <input type="number" id="senha" placeholder="Senha da conta">
-      <div class="caixabotao">
-        <button class="botao" onclick="cadastrarconta()">Cadastrar</button>
-      </div>
-    </div>
+      <input type="text" id="email" placeholder="Email para cadastro">
+      <input type="password" id="senha" placeholder="Senha da conta">
+      <button class="botao-cadastrar" onclick="cadastrarconta()">Cadastrar</button>
+      
+      <p class="login">
+        <a href="login.html">Já tem uma conta? Fazer login</a>
+      </p>
+
   </div>
-  <button onclick="window.location.href='inicio.html'">Voltar</button>
 
   <script src="secrets.js"></script>
   <script src="firebase.js"></script>
