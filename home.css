@@ -1,19 +1,114 @@
 body {
     background-color: #abbaff;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+}
+
+.agenda-container {
+    background-color: #5663ff;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    flex: 3 ;
+    height: 450px;
+}
+
+.agenda-container h2 {
+    text-align: center;
+    color: #00188e;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+#tabela-agenda {
+    width: 100%;
+    border-collapse: collapse;
+    height: 350px;
+}
+
+#tabela-agenda th, #tabela-agenda td {
+    border: 1px solid #00188e;
+    padding: 8px;
+    text-align: center;
+    color: #fff;
+}
+
+.lista-tarefas {
+    background-color: #5663ff;
+    padding: 20px;
+    border-radius: 25px;
+    min-height: 450px;
+    width: 250px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    justify-content: center;
-    font-family: 'Segoe UI', sans-serif;
+    gap: 10px;
+    justify-content: flex-start;
+    color: #fff;
+    font-size: 16px;
+}
+
+.lista-tarefas-container {
+    background-color: #5663ff;
+    border-radius: 25px;
+}
+
+.lista-tarefas-container h2 {
+    text-align: center;
+    color: #00188e;
+    font-size: 18px;
+}
+
+.topicos {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px; 
+    width: 1000px;
+    height: 300px;
+    align-items: center; 
+    margin-left: 150px;
+    margin-top: -50px ;
+}
+
+.topicos h2 {
+    color: #00188e;
+    text-align: center;
+}
+
+
+.topicos button {
+    padding: 30px;
+    font-size: 18px;
+    background-color: #5663ff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    color: #fff;
+    width: 300px;
+    height: 200px;
+}
+
+.topicos button:hover {
+    background-color: #2a37c8;
+}
+
+.botoes {
+    display: flex;
+    gap: 15px;
 }
 
 .menuinferior {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 10px;
+    left: 93%;
+    transform: translateX(-50%);
     display: flex;
-    gap: 15px;
+    gap: 20px;
 }
 
 .menuinferior button {
@@ -31,20 +126,4 @@ body {
 .menuinferior img {
     width: 25px;
     height: 25px;
-}
-
-.voltar-btn {
-    position: absolute;
-    top: 60px;
-    left: 40px;
-    background-color: #5170ff;
-    color: #00188e;
-    border: none;
-    border-radius: 30px;
-    padding: 15px 30px;
-    font-size: 24px;
-    cursor: pointer;
-}
-.voltar-btn:hover {
-    background-color: #3f51b5; 
 }

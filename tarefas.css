@@ -8,48 +8,6 @@ body {
     font-family: 'Segoe UI', sans-serif;
 }
 
-.container {
-    display: flex;
-    gap: 70px;
-    margin-bottom: 60px;
-}
-
-.card {
-    background-color: #5170ff;
-    padding: 25px;
-    border-radius: 20px;
-    width: 500px;
-    min-height: 500px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
-    position: relative;
-}
-
-.card h2 {
-    text-align: center;
-    color: #00188e;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-}
-
-.add-btn {
-    position: absolute;
-    top: 16px;
-    right: 18px;
-    background-color: #a9b6f3;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #00188e;
-}
-.add-btn:hover {
-    background-color: #3f51b5;
-    color: #a9b6f3;
-}
-
 .menuinferior {
     position: fixed;
     bottom: 20px;
@@ -67,7 +25,7 @@ body {
 }
 
 .menuinferior button:hover {
-    background-color: #283593;
+  background-color: #283593;
 }
 
 .menuinferior img {
@@ -84,9 +42,44 @@ body {
     border: none;
     border-radius: 30px;
     padding: 15px 30px;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
 }
 .voltar-btn:hover {
     background-color: #3f51b5; 
+}
+
+.container {
+    display: flex;
+    gap: 70px;
+    margin-bottom: 60px;
+}
+
+.card {
+    background-color: #5170ff;
+    padding: 25px;
+    border-radius: 20px;
+    width: 400px;
+    min-height: 500px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.card h3 {
+    text-align: center;
+    color: #00188e;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.tarefa-card {
+  background-color: #3a54d0;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+.tarefa-card input {
+  margin-right: 8px;
 }
