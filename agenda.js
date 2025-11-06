@@ -12,12 +12,17 @@ salvar.addEventListener("click", () => {
   const materia = document.getElementById("materia").value;
   const tarefa = document.getElementById("tarefa").value;
 
-  if (tarefa.trim() === "") {
+  if (!dia || !materia || !tarefa) {
     alert("Preencha todos os campos para adicionar a tarefa.");
     return;
   }
 
-  const registrobanco = { dia, materia, tarefa };
+  const registrobanco = { 
+    dia, 
+    materia, 
+    tarefa 
+  };
+  
   db.ref("tarefas").push(registrobanco).then(() => {
     alert("Tarefa adicionada.");
   });
