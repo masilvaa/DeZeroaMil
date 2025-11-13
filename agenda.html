@@ -2,84 +2,47 @@
 <html lang="pt-br">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Agenda de Estudos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minha Agenda</title>
   <link rel="stylesheet" href="agenda.css" />
-  <!-- firebase compat libs (você já usou essas) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 </head>
 <body>
-  <main class="container">
-    <section class="left">
-      <div class="card form-card">
-        <h2>Adicionar Tarefa</h2>
+  <header>
+        <h1>De Zero a Mil</h1>
+        <p>Do planejamento à conquista: seu caminho para o sucesso no ENEM.</p>
+  </header>
 
-        <label for="titulo">Tarefa</label>
-        <input id="titulo" placeholder="Ex: Estudar limites e derivadas" />
+  <button class="logout-btn" onclick="window.location.href='inicio.html'">Fazer logout</button>
 
-        <div class="row">
-          <div class="col">
-            <label for="materia">Matéria</label>
-            <select id="materia">
-              <option value="">Selecione a matéria</option>
-              <option>Matemática</option>
-              <option>Ciências da Natureza</option>
-              <option>Ciências Humanas</option>
-              <option>Linguagens</option>
-            </select>
-          </div>
-          <div class="col">
-            <label for="prioridade">Prioridade</label>
-            <select id="prioridade">
-              <option value="baixa">Baixa</option>
-              <option value="media" selected>Média</option>
-              <option value="alta">Alta</option>
-            </select>
-          </div>
-        </div>
-
-        <label for="data">Data de entrega (opcional)</label>
-        <input type="date" id="data" />
-
-        <button id="btn-salvar" class="primary-btn">Adicionar Tarefa</button>
+  <main class="container narrow">
+    <div class="card calendar-card">
+      <div class="calendar-header">
+        <button id="prev" class="icon-btn">◀</button>
+        <h3 id="mes-ano">—</h3>
+        <button id="next" class="icon-btn">▶</button>
       </div>
 
-      <div class="card list-card">
-        <h3>Lista de Tarefas</h3>
-        <div id="lista-tarefas"></div>
-      </div>
-    </section>
-
-    <aside class="right">
-      <div class="card calendar-card">
-        <div class="calendar-header">
-          <button id="prev" class="icon-btn">&#8592;</button>
-          <h3 id="mes-ano">—</h3>
-          <button id="next" class="icon-btn">&#8594;</button>
-        </div>
-
-        <table class="calendar">
-          <thead>
-            <tr>
-              <th>Dom</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th>
-            </tr>
-          </thead>
-          <tbody id="dias"></tbody>
-        </table>
-      </div>
-
-      <div class="card upcoming-card">
-        <h4>Próximas tarefas</h4>
-        <div id="upcoming-list"></div>
-      </div>
-    </aside>
+      <table class="calendar">
+        <thead>
+          <tr>
+            <th>Dom</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th>
+          </tr>
+        </thead>
+        <tbody id="dias"></tbody>
+      </table>
+    </div>
   </main>
 
-  <!-- seus arquivos de configuração Firebase -->
+  <div class="menuinferior">
+    <button><img src="fotos/casa.png" onclick="window.location.href='home.html'" alt="Inicio"></button>
+    <button><img src="fotos/tarefas.png" onclick="window.location.href='tarefas.html'" alt="Tarefas"></button>
+    <button><img src="fotos/agenda.png" onclick="window.location.href='agenda.html'" alt="Agenda"></button>
+  </div>
+
   <script src="secrets.js"></script>
   <script src="firebase.js"></script>
-  <!-- script principal -->
   <script src="agenda.js"></script>
 </body>
 </html>

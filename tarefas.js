@@ -1,88 +1,123 @@
-const addBtn = document.getElementById("add-btn");
-const form = document.getElementById("formulario");
-const salvar = document.getElementById("salvar");
-const tabela = document.getElementById("tabela").getElementsByTagName("tbody")[0];
+// === Referências de elementos ===
+const modal = document.getElementById("modal");
+const btnAbrir = document.getElementById("abrirModal");
+const btnCancelar = document.getElementById("cancelar");
+const btnSalvar = document.getElementById("salvar");
+const lista = document.getElementById("listaTarefas");
+const filtroMateria = document.getElementById("filtroMateria");
 
-addBtn.addEventListener("click", () => {
-  form.style.display = form.style.display === "none" ? "block" : "none";
-});
+let tarefas = [];
 
+// === Abrir e fechar modal ===
+btnAbrir.addEventListener("click", () => modal.style.display = "flex");
+btnCancelar.addEventListener("click", () => modal.style.display = "none");
+window.addEventListener("click", e => { if (e.target === modal) modal.style.display = "none"; });
 
-salvar.addEventListener("click", () => {
-  const data = document.getElementById("data").value; // yyyy-mm-dd
+// === Salvar tarefa ===
+btnSalvar.addEventListener("click", () => {
+  const descricao = document.getElementById("descricao").value.trim();
   const materia = document.getElementById("materia").value;
-  const tarefa = document.getElementById("tarefa").value;
+  const prioridade = document.getElementById("prioridade").value;
+  const data = document.getElementById("data").value;
 
-  if (!data || !materia || !tarefa) {
-    alert("Preencha todos os campos para adicionar a tarefa.");
+  if (!descricao || !materia || !data) {
+    alert("Preencha todos os campos.");
     return;
   }
 
-  const usuario = JSON.parse(sessionStorage.getItem('usuarioLogado'));
-  if (!usuario || !usuario.id) {
-    alert("Usuário não encontrado. Faça login novamente.");
+  const usuario = JSON.parse(sessionStorage.getItem("usuarioLogado") || "null");
+  if (!usuario) {
+    alert("Usuário não identificado. Faça login novamente.");
     return;
   }
 
-  const registrobanco = { 
-    data, 
-    materia, 
-    tarefa 
+  const novaTarefa = {
+    descricao,
+    materia,
+    prioridade,
+    data,
+    concluida: false,
+    createdAt: new Date().toISOString(),
   };
-  
-  db.ref(`tarefas/${usuario.id}`).push(registrobanco)
+
+  // salva no firebase
+  db.ref(`tarefas/${usuario.id}`).push(novaTarefa)
     .then(() => {
-      alert(`Tarefa adicionada para ${data}!`);
-      form.style.display = "none";
-      document.getElementById("tarefa").value = "";
+      alert("Tarefa adicionada!");
+      modal.style.display = "none";
+      document.getElementById("descricao").value = "";
       document.getElementById("data").value = "";
     })
-    .catch(error => {
-      console.error("Erro ao salvar tarefa:", error);
-      alert("Erro ao salvar a tarefa no banco.");
+    .catch((error) => {
+      console.error("Erro ao salvar:", error);
+      alert("Erro ao salvar a tarefa.");
     });
 });
 
-const listaAtivas = document.getElementById("lista-tarefas");
-const listaConcluidas = document.getElementById("lista-concluidas");
+// === Carregar tarefas do Firebase em tempo real ===
+document.addEventListener("DOMContentLoaded", () => {
+  const usuario = JSON.parse(sessionStorage.getItem("usuarioLogado") || "null");
+  if (!usuario) return;
 
-const tarefasRef = db.ref("tarefas");
-const concluidasRef = db.ref("tarefasConcluidas");
-
-tarefasRef.on("value", snapshot => {
-  listaAtivas.innerHTML = "";
-  const data = snapshot.val();
-  if (!data) return;
-
-  Object.entries(data).forEach(([id, tarefa]) => {
-    const div = document.createElement("div");
-    div.classList.add("tarefa-card");
-
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-
-    checkbox.addEventListener("change", () => {
-      if (checkbox.checked) {
-        concluidasRef.push(tarefa);
-        db.ref("tarefas").child(id).remove();
-      }
-    });
-
-    div.textContent = `${tarefa.tarefa} - ${tarefa.materia}`;
-    div.prepend(checkbox);
-    listaAtivas.appendChild(div);
+  const ref = db.ref(`tarefas/${usuario.id}`);
+  ref.on("value", (snapshot) => {
+    const data = snapshot.val();
+    tarefas = data ? Object.values(data) : [];
+    renderTarefas();
   });
 });
 
-concluidasRef.on("value", snapshot => {
-  listaConcluidas.innerHTML = "";
-  const data = snapshot.val();
-  if (!data) return;
+// === Renderizar tarefas ===
+function renderTarefas() {
+  lista.innerHTML = "";
 
-  Object.values(data).forEach(tarefa => {
-    const div = document.createElement("div");
-    div.classList.add("tarefa-card");
-    div.textContent = `${tarefa.tarefa} - ${tarefa.materia}`;
-    listaConcluidas.appendChild(div);
-  });
+  const filtro = filtroMateria.value;
+  const filtradas = filtro === "todas" ? tarefas : tarefas.filter(t => t.materia === filtro);
+
+  if (filtradas.length === 0) {
+    lista.innerHTML = "<p style='text-align:center;color:#777;'>Nenhuma tarefa planejada.</p>";
+    return;
+  }
+
+  filtradas.forEach((tarefa, index) => {
+  const div = document.createElement("div");
+  div.classList.add("tarefa", `prioridade-${tarefa.prioridade.toLowerCase()}`);
+
+  div.innerHTML = `
+    <div class="tarefa-info">
+      <input type="checkbox" class="check" data-index="${index}" ${tarefa.concluida ? "checked" : ""}>
+      <h3 class="${tarefa.concluida ? "concluida" : ""}">${tarefa.descricao}</h3>
+      <div class="tags">
+        <span class="tag">${tarefa.materia}</span>
+        <span class="tag">Prioridade: ${tarefa.prioridade}</span>
+        <span class="tag">📅 ${tarefa.data}</span>
+      </div>
+    </div>
+  `;
+
+  lista.appendChild(div);
 });
+}
+
+// === Marcar tarefas como concluídas ===
+lista.addEventListener("change", (e) => {
+  if (e.target.classList.contains("check")) {
+    const index = e.target.dataset.index;
+    const usuario = JSON.parse(sessionStorage.getItem("usuarioLogado"));
+    const tarefa = tarefas[index];
+    const novaSituacao = e.target.checked;
+
+    // Atualiza no Firebase
+    db.ref(`tarefas/${usuario.id}`)
+      .orderByChild("descricao")
+      .equalTo(tarefa.descricao)
+      .once("value", (snapshot) => {
+        snapshot.forEach((child) => {
+          db.ref(`tarefas/${usuario.id}/${child.key}`).update({ concluida: novaSituacao });
+        });
+      });
+  }
+});
+
+
+filtroMateria.addEventListener("change", renderTarefas);

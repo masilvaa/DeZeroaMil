@@ -56,14 +56,14 @@ input {
   margin: 16px -14px;
   font-size: 16px;
   border: none;
-  background-color: #abbaff;
-  color: white ;
+  background-color: white;
+  color: black ;
   border-radius: 8px;
   cursor: pointer;
 }
 
 input:hover {
-  background-color: #0027cc;
+  background-color: rgb(214, 214, 214);
 }
 
 .botao-logar {

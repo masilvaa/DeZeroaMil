@@ -56,14 +56,14 @@ input {
     margin: 16px -14px;
     font-size: 16px;
     border: none;
-    background-color: #abbaff;
+    background-color: white;
     color: white ;
     border-radius: 8px;
     cursor: pointer;
 }
 
 input:hover {
-    background-color: #0b1670;
+    background-color: rgb(214, 214, 214);
 }
 
 .botao-cadastrar {

@@ -1,33 +1,203 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #c2cdfd;
-    color: #00188e;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #c2cdfd;
+  color: #00188e;
 }
 
 header {
-    background-color: #5170ff;
-    text-align: center;
-    padding: 10px 10px 10px;
+  background-color: #5170ff;
+  text-align: center;
+  padding: 10px 10px 10px;
 }
 
 header h1 {
-    font-size: 48px;
-    margin: 0;
+  font-size: 48px;
+  margin: 0;
 }
 
 header p {
-    font-size: 18px;
-    margin-top: 10px;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 40px;
+  right: 90px;
+  background-color: #abbaff;
+  color: #00188e;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.logout-btn:hover {
+  background-color: #3f51b5; 
+}
+
+.container {
+  width: 80%;
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 16px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.header1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filtro {
+  display: flex;
+  gap: 10px;
+}
+
+select {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.btn-add {
+  background-color: #5170ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-add:hover {
+  background-color: #003ad6;
+}
+
+/* Tarefas */
+.lista-tarefas {
+  margin-top: 20px;
+}
+
+.tarefa {
+  border-left: 6px solid #00188e;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: #fafafa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tarefa-info {
+  flex: 1;
+}
+
+.tarefa h3 {
+  margin: 0 0 6px;
+}
+
+.tarefa .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tarefa h3.concluida {
+  text-decoration: line-through;
+  color: #666;
+  opacity: 0.7;
+}
+
+.tag {
+  background-color: #e3e9ff;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 13px;
+}
+
+.tarefa button {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Cores de prioridade */
+.prioridade-Alta { border-left-color: #ff4d4d; background: #ffeaea; }
+.prioridade-Média { border-left-color: #f7c04a; background: #fff7e5; }
+.prioridade-Baixa { border-left-color: #65c27c; background: #ebffed; }
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: #1e50ff;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-salvar {
+  background-color: #1e50ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.btn-cancelar {
+  background-color: #ccc;
+  color: #222;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
 }
 
 .menuinferior {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 10px;
+    left: 93%;
+    transform: translateX(-50%);
     display: flex;
-    gap: 15px;
+    gap: 20px;
 }
 
 .menuinferior button {
@@ -45,57 +215,4 @@ header p {
 .menuinferior img {
     width: 25px;
     height: 25px;
-}
-
-.logout-btn {
-    position: absolute;
-    top: 40px;
-    right: 90px;
-    background-color: #abbaff;
-    color: #00188e;
-    border: none;
-    border-radius: 30px;
-    padding: 15px 30px;
-    font-size: 20px;
-    cursor: pointer;
-}
-.logout-btn:hover {
-    background-color: #3f51b5; 
-}
-
-.container {
-    display: flex;
-    gap: 70px;
-    margin-bottom: 60px;
-}
-
-.card {
-    background-color: #5170ff;
-    padding: 25px;
-    border-radius: 20px;
-    width: 400px;
-    min-height: 500px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
-    position: relative;
-    margin-top: 20px;
-    margin-left: 130px;
-}
-
-.card h3 {
-    text-align: center;
-    color: #00188e;
-    margin-bottom: 20px;
-    font-size: 18px;
-}
-
-.tarefa-card {
-    background-color: #3a54d0;
-    padding: 8px;
-    margin: 5px 0;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-}
-.tarefa-card input {
-    margin-right: 8px;
 }

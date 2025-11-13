@@ -1,34 +1,55 @@
-const tabela = document.getElementById("tabela-agenda").getElementsByTagName("tbody")[0];
-const listaTarefas = document.getElementById("lista-tarefas");
+document.addEventListener("DOMContentLoaded", () => {
+  const usuario = JSON.parse(sessionStorage.getItem("usuarioLogado") || "null");
 
-const tarefasRef = db.ref("tarefas");
+  const ref = db.ref(`tarefas/${usuario.id}`);
+  const barra = document.getElementById("progresso");
+  const texto = document.getElementById("porcentagem");
 
-tarefasRef.on("value", snapshot => {
+  ref.on("value", (snapshot) => {
     const data = snapshot.val();
-
-    for (let i = 0; i < tabela.rows.length; i++) {
-        for (let j = 0; j < tabela.rows[i].cells.length; j++) {
-            tabela.rows[i].cells[j].innerHTML = "";
-        }
+    if (!data) {
+      barra.style.width = "0%";
+      texto.textContent = "0% (Nenhuma tarefa)";
+      return;
     }
 
-    listaTarefas.innerHTML = "";
+    const tarefas = Object.values(data);
+    const total = tarefas.length;
+    const concluidas = tarefas.filter(t => t.concluida).length;
 
-    if (data) {
-        Object.entries(data).forEach(([id, tarefa]) => {
-            for (let i = 0; i < tabela.rows.length; i++) {
-                const celula = tabela.rows[i].cells[tarefa.dia];
-                if (celula.innerHTML.trim() === "") {
-                    const span = document.createElement("span");
-                    span.textContent = `${tarefa.tarefa} - ${tarefa.materia}`;
-                    celula.appendChild(span);
-                    break;
-                }
-            }
-
-            const div = document.createElement("div");
-            div.textContent = `${tarefa.tarefa} - ${tarefa.materia}`;
-            listaTarefas.appendChild(div);
-        });
-    }
+    const porcentagem = Math.round((concluidas / total) * 100);
+    barra.style.width = `${porcentagem}%`;
+    texto.textContent = `${porcentagem}% concluído`;
+  });
 });
+
+function renderTarefas() {
+  lista.innerHTML = "";
+
+  const filtro = filtroMateria.value;
+  const filtradas = filtro === "todas" ? tarefas : tarefas.filter(t => t.materia === filtro);
+
+  if (filtradas.length === 0) {
+    lista.innerHTML = "<p style='text-align:center;color:#777;'>Nenhuma tarefa planejada.</p>";
+    return;
+  }
+
+  filtradas.forEach((tarefa, index) => {
+  const div = document.createElement("div");
+  div.classList.add("tarefa", `prioridade-${tarefa.prioridade.toLowerCase()}`);
+
+  div.innerHTML = `
+    <div class="tarefa-info">
+      <input type="checkbox" class="check" data-index="${index}" ${tarefa.concluida ? "checked" : ""}>
+      <h3 class="${tarefa.concluida ? "concluida" : ""}">${tarefa.descricao}</h3>
+      <div class="tags">
+        <span class="tag">${tarefa.materia}</span>
+        <span class="tag">Prioridade: ${tarefa.prioridade}</span>
+        <span class="tag">📅 ${tarefa.data}</span>
+      </div>
+    </div>
+  `;
+
+  lista.appendChild(div);
+});
+}

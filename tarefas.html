@@ -3,69 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>De Zero a Mil</title>
+  <title>Minhas Tarefas</title>
   <link rel="stylesheet" href="tarefas.css">
-
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 </head>
-
 <body>
-    <header>
-        <h1>De Zero a Mil</h1>
-        <p>Do planejamento à conquista: seu caminho para o sucesso no ENEM.</p>
-    </header>
+  <header>
+    <h1>De Zero a Mil</h1>
+    <p>Do planejamento à conquista: seu caminho para o sucesso no ENEM.</p>
+  </header>
 
-    <button class="logout-btn" onclick="window.location.href='inicio.html'">Fazer logout</button>
-  
-    <div class="container">
-        <div id="tarefas-ativas" class="card">
-            <h3>Lista de tarefas</h3>
-            <div id="lista-tarefas"></div>
-        </div>
+  <button class="logout-btn" onclick="window.location.href='inicio.html'">Fazer logout</button>
 
-        <div id="tarefas-concluidas" class="card">
-            <h3>Concluídas anteriormente</h3>
-            <div id="lista-concluidas"></div>
-        </div>
-
-
-        <button id="add-btn" class="add-btn">+</button>
-        
-
-        <div id="formulario" style="display:none;">
-            <select id="dia">
-                <option value="0">Domingo</option>
-                <option value="1">Segunda</option>
-                <option value="2">Terça</option>
-                <option value="3">Quarta</option>
-                <option value="4">Quinta</option>
-                <option value="5">Sexta</option>
-                <option value="6">Sábado</option>
-            </select>
-
-            <select id="materia">
-                <option>Matemática</option>
-                <option>Ciências da Natureza</option>
-                <option>Ciências Humanas</option>
-                <option>Linguagens</option>
-            </select>
-
-            <input type="text" id="tarefa" placeholder="Digite a tarefa">
-            <button id="salvar">Adicionar tarefa</button>
-        </div>
-
-
+  <div class="container">
+    <div class="header1">
+      <h1>Minhas Tarefas</h1>
+      <div class="filtro">
+        <select id="filtroMateria">
+          <option value="todas">Todas as matérias</option>
+          <option value="Matematica">Matemática e suas Tecnologias</option>
+          <option value="Humanas">Ciências Humanas e suas Tecnologias</option>
+          <option value="Linguagens">Linguagens, Códigos e suas Tecnologias</option>
+          <option value="Naturezas">Ciências da Natureza e suas Tecnologias</option>
+        </select>
+        <button id="abrirModal" class="btn-add">+ Adicionar Tarefa</button>
+      </div>
     </div>
 
-    <div class="menuinferior">
-        <button><img src="fotos\casa.png" onclick="window.location.href='home.html'" alt="Inicio"></button>
-        <button><img src="fotos\agenda.png" onclick="window.location.href='agenda.html'" alt="Agenda"></button>
-        <button><img src="fotos\tarefas.png" onclick="window.location.href='tarefas.html'" alt="Tarefas"></button>
-        
-    <script src="secrets.js"></script>
-    <script src="firebase.js"></script>
-    <script src="tarefas.js"></script>
+    <div id="listaTarefas" class="lista-tarefas">
+    </div>
+  </div>
 
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h2>Adicionar Tarefa</h2>
+      <label>Descrição</label>
+      <input type="text" id="descricao" placeholder="Ex: Estudar funções quadráticas">
+
+      <label>Matéria</label>
+      <select id="materia">
+        <option value="Matemática">Matemática e suas Tecnologias</option>
+        <option value="Humanas">Ciências Humanas e suas Tecnologias</option>
+        <option value="Linguagens">Linguagens, Códigos e suas Tecnologias</option>
+        <option value="Naturezas">Ciências da Natureza e suas Tecnologias</option>
+        <option value="Redação">Redação</option>
+      </select>
+
+      <label>Prioridade</label>
+      <select id="prioridade">
+        <option value="Alta">Alta</option>
+        <option value="Média">Média</option>
+        <option value="Baixa">Baixa</option>
+      </select>
+
+      <label>Data de entrega</label>
+      <input type="date" id="data">
+
+      <div class="botoes">
+        <button id="salvar" onclick="salvar()">Salvar</button>
+        <button id="cancelar" class="btn-cancelar">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="menuinferior">
+    <button><img src="fotos/casa.png" onclick="window.location.href='home.html'" alt="Inicio"></button>
+    <button><img src="fotos/tarefas.png" onclick="window.location.href='tarefas.html'" alt="Tarefas"></button>
+    <button><img src="fotos/agenda.png" onclick="window.location.href='agenda.html'" alt="Agenda"></button>
+  </div>
+
+  <script src="secrets.js"></script>
+  <script src="firebase.js"></script>
+  <script src="tarefas.js"></script>
 </body>
 </html>
