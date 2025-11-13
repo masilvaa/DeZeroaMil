@@ -65,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = snapshot.val();
     const tarefas = data ? Object.values(data) : [];
 
-    // limpar lista
     listaHome.innerHTML = "";
 
     if (tarefas.length === 0) {
