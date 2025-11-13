@@ -1,11 +1,25 @@
 body {
-    background-color: #abbaff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    justify-content: center;
+    margin: 0;
+    padding: 0;
     font-family: 'Segoe UI', sans-serif;
+    background-color: #c2cdfd;
+    color: #00188e;
+}
+
+header {
+    background-color: #5170ff;
+    text-align: center;
+    padding: 10px 10px 10px;
+}
+
+header h1 {
+    font-size: 48px;
+    margin: 0;
+}
+
+header p {
+    font-size: 18px;
+    margin-top: 10px;
 }
 
 .menuinferior {
@@ -25,7 +39,7 @@ body {
 }
 
 .menuinferior button:hover {
-  background-color: #283593;
+    background-color: #283593;
 }
 
 .menuinferior img {
@@ -33,11 +47,11 @@ body {
     height: 25px;
 }
 
-.voltar-btn {
+.logout-btn {
     position: absolute;
-    top: 60px;
-    left: 40px;
-    background-color: #5170ff;
+    top: 40px;
+    right: 90px;
+    background-color: #abbaff;
     color: #00188e;
     border: none;
     border-radius: 30px;
@@ -45,7 +59,7 @@ body {
     font-size: 20px;
     cursor: pointer;
 }
-.voltar-btn:hover {
+.logout-btn:hover {
     background-color: #3f51b5; 
 }
 
@@ -63,6 +77,8 @@ body {
     min-height: 500px;
     box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
     position: relative;
+    margin-top: 20px;
+    margin-left: 130px;
 }
 
 .card h3 {
@@ -73,13 +89,13 @@ body {
 }
 
 .tarefa-card {
-  background-color: #3a54d0;
-  padding: 8px;
-  margin: 5px 0;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
+    background-color: #3a54d0;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
 }
 .tarefa-card input {
-  margin-right: 8px;
+    margin-right: 8px;
 }

@@ -14,8 +14,9 @@ function cadastrarconta() {
     senha
   };
 
-  db.ref('cadastros').push(registrobanco)
-    .then(() => {
+  const idusuario = db.ref('cadastros').push(registrobanco);
+
+  idusuario.then(() => {
       alert("Cadastro concluído!");
       document.getElementById('nome').value = '';
       document.getElementById('email').value = '';

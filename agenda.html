@@ -1,84 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>De Zero a Mil</title>
-  <link rel="stylesheet" href="agenda.css">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Agenda de Estudos</title>
+  <link rel="stylesheet" href="agenda.css" />
+  <!-- firebase compat libs (você já usou essas) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 </head>
 <body>
+  <main class="container">
+    <section class="left">
+      <div class="card form-card">
+        <h2>Adicionar Tarefa</h2>
 
-    <button class="voltar-btn" onclick="window.location.href='inicio.html'">Fazer logout</button>
+        <label for="titulo">Tarefa</label>
+        <input id="titulo" placeholder="Ex: Estudar limites e derivadas" />
 
-    <div class="menuinferior">
-        <button><img src="fotos\casa.png" onclick="window.location.href='home.html'" alt="Inicio"></button>
-        <button><img src="fotos\agenda.png" onclick="window.location.href='agenda.html'" alt="Agenda"></button>
-        <button><img src="fotos\tarefas.png" onclick="window.location.href='tarefas.html'" alt="Tarefas"></button>
-    </div>
-    
-    <h2>Tarefas da semana</h2>
-
-    <div class="card">
-        <div class="agenda">
-            <table id="tabela">
-                <thead>
-                    <tr>
-                        <th>Domingo</th>
-                        <th>Segunda</th>
-                        <th>Terça</th>
-                        <th>Quarta</th>
-                        <th>Quinta</th>
-                        <th>Sexta</th>
-                        <th>Sábado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                    <tr>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                    <tr>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                    <tr>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <button id="add-btn" class="add-btn">+</button>
+        <div class="row">
+          <div class="col">
+            <label for="materia">Matéria</label>
+            <select id="materia">
+              <option value="">Selecione a matéria</option>
+              <option>Matemática</option>
+              <option>Ciências da Natureza</option>
+              <option>Ciências Humanas</option>
+              <option>Linguagens</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="prioridade">Prioridade</label>
+            <select id="prioridade">
+              <option value="baixa">Baixa</option>
+              <option value="media" selected>Média</option>
+              <option value="alta">Alta</option>
+            </select>
+          </div>
         </div>
-    </div>
 
-    <div id="formulario" style="display:none;">
-        <select id="dia">
-            <option value="0">Domingo</option>
-            <option value="1">Segunda</option>
-            <option value="2">Terça</option>
-            <option value="3">Quarta</option>
-            <option value="4">Quinta</option>
-            <option value="5">Sexta</option>
-            <option value="6">Sábado</option>
-        </select>
+        <label for="data">Data de entrega (opcional)</label>
+        <input type="date" id="data" />
 
-        <select id="materia">
-            <option>Matemática</option>
-            <option>Ciências da Natureza</option>
-            <option>Ciências Humanas</option>
-            <option>Linguagens</option>
-        </select>
+        <button id="btn-salvar" class="primary-btn">Adicionar Tarefa</button>
+      </div>
 
-        <input type="text" id="tarefa" placeholder="Digite a tarefa">
-        <button id="salvar">Adicionar tarefa</button>
-    </div>
+      <div class="card list-card">
+        <h3>Lista de Tarefas</h3>
+        <div id="lista-tarefas"></div>
+      </div>
+    </section>
 
-    <script src="secrets.js"></script>
-    <script src="firebase.js"></script>
-    <script src="agenda.js"></script>
+    <aside class="right">
+      <div class="card calendar-card">
+        <div class="calendar-header">
+          <button id="prev" class="icon-btn">&#8592;</button>
+          <h3 id="mes-ano">—</h3>
+          <button id="next" class="icon-btn">&#8594;</button>
+        </div>
+
+        <table class="calendar">
+          <thead>
+            <tr>
+              <th>Dom</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th>
+            </tr>
+          </thead>
+          <tbody id="dias"></tbody>
+        </table>
+      </div>
+
+      <div class="card upcoming-card">
+        <h4>Próximas tarefas</h4>
+        <div id="upcoming-list"></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- seus arquivos de configuração Firebase -->
+  <script src="secrets.js"></script>
+  <script src="firebase.js"></script>
+  <!-- script principal -->
+  <script src="agenda.js"></script>
 </body>
 </html>

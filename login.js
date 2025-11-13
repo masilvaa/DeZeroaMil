@@ -10,19 +10,18 @@ function logarconta() {
   db.ref('cadastros').once('value')
     .then(snapshot => {
       const usuarios = snapshot.val();
-
-      let encontrado = false;
+      let usuarioencontrado = null;
 
       if (usuarios) {
-        Object.values(usuarios).forEach(usuario => {
+        Object.entries(usuarios).forEach(([id, usuario]) => {
           if (usuario.email === email && usuario.senha === senha) {
-            encontrado = true;
-            sessionStorage.setItem('usuarioLogado', usuario.nome);
+            usuarioencontrado = { id, nome: usuario.nome, email: usuario.email };
           }
         });
       }
 
-      if (encontrado) {
+      if (usuarioencontrado) {
+        sessionStorage.setItem('usuarioLogado', JSON.stringify(usuarioencontrado));
         alert("Login bem-sucedido!");
         window.location.href = "home.html";  
       } else {

@@ -11,8 +11,12 @@
 </head>
 
 <body>
+    <header>
+        <h1>De Zero a Mil</h1>
+        <p>Do planejamento à conquista: seu caminho para o sucesso no ENEM.</p>
+    </header>
 
-    <button class="voltar-btn" onclick="window.location.href='inicio.html'">Fazer logout</button>
+    <button class="logout-btn" onclick="window.location.href='inicio.html'">Fazer logout</button>
   
     <div class="container">
         <div id="tarefas-ativas" class="card">
@@ -24,6 +28,34 @@
             <h3>Concluídas anteriormente</h3>
             <div id="lista-concluidas"></div>
         </div>
+
+
+        <button id="add-btn" class="add-btn">+</button>
+        
+
+        <div id="formulario" style="display:none;">
+            <select id="dia">
+                <option value="0">Domingo</option>
+                <option value="1">Segunda</option>
+                <option value="2">Terça</option>
+                <option value="3">Quarta</option>
+                <option value="4">Quinta</option>
+                <option value="5">Sexta</option>
+                <option value="6">Sábado</option>
+            </select>
+
+            <select id="materia">
+                <option>Matemática</option>
+                <option>Ciências da Natureza</option>
+                <option>Ciências Humanas</option>
+                <option>Linguagens</option>
+            </select>
+
+            <input type="text" id="tarefa" placeholder="Digite a tarefa">
+            <button id="salvar">Adicionar tarefa</button>
+        </div>
+
+
     </div>
 
     <div class="menuinferior">
