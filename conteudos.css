@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #c2cdfd;
+  color: #00188e;
+}
+
+header {
+  background-color: #5170ff;
+  text-align: center;
+  padding: 10px 10px 10px;
+}
+
+header h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+header p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.voltar-btn {
+  position: absolute;
+  top: 40px;
+  right: 90px;
+  background-color: #abbaff;
+  color: #00188e;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.voltar-btn:hover {
+  background-color: #3f51b5; 
+}
+
+.texto-central {
+  background-color: white;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+  width: 400px;
+  height: 370px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}

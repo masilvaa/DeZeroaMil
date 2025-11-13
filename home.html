@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Home</title>
   <link rel="stylesheet" href="home.css" />
-  <!-- firebase compat libs (você já usou essas) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 </head>
 <body>
   <header>
-      <h1>De Zero a Mil</h1>
-      <p>Do planejamento à conquista: seu caminho para o sucesso no ENEM.</p>
+    <h1>De Zero a Mil</h1>
+    <p>Do planejamento à conquista: seu caminho para o sucesso no ENEM.</p>
   </header>
 
   <button class="logout-btn" onclick="window.location.href='inicio.html'">Fazer logout</button>
@@ -20,7 +19,7 @@
   <main class="container">
     <section class="left">
       <div class="card form-card">
-        <h2>Progresso</h2>
+        <h3>Progresso</h3>
         <div class="barra">
           <div id="progresso"></div>
         </div>
@@ -35,26 +34,15 @@
     </section>
 
     <aside class="right">
-      <div class="card calendar-card">
-        <div class="calendar-header">
-          <button id="prev" class="icon-btn">&#8592;</button>
-          <h3 id="mes-ano">—</h3>
-          <button id="next" class="icon-btn">&#8594;</button>
+      <div class="card conteudos">
+        <h3>Conteúdos de apoio</h3>
+        <div id="conteudos">
+          <button class="botoes" onclick="window.location.href='linguagens.html'">Linguagens, Códigos e suas Tecnologias</button>
+          <button class="botoes" onclick="window.location.href='humanas.html'">Ciências Humanas e suas Tecnologias</button>
+          <button class="botoes" onclick="window.location.href='naturezas.html'">Ciências da Natureza e suas Tecnologias</button>
+          <button class="botoes" onclick="window.location.href='matematica.html'">Matemática e suas Tecnologias</button>
+          <button class="botoes" onclick="window.location.href='redacao.html'">Redação</button>
         </div>
-
-        <table class="calendar">
-          <thead>
-            <tr>
-              <th>Dom</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th>
-            </tr>
-          </thead>
-          <tbody id="dias"></tbody>
-        </table>
-      </div>
-
-      <div class="card upcoming-card">
-        <h4>Próximas tarefas</h4>
-        <div id="upcoming-list"></div>
       </div>
     </aside>
   </main>
@@ -65,10 +53,8 @@
     <button><img src="fotos/agenda.png" onclick="window.location.href='agenda.html'" alt="Agenda"></button>
   </div>
 
-  <!-- seus arquivos de configuração Firebase -->
   <script src="secrets.js"></script>
   <script src="firebase.js"></script>
-  <!-- script principal -->
   <script src="home.js"></script>
 </body>
 </html>

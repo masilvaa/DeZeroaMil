@@ -79,7 +79,6 @@ select {
   background-color: #003ad6;
 }
 
-/* Tarefas */
 .lista-tarefas {
   margin-top: 20px;
 }
@@ -111,8 +110,8 @@ select {
 
 .tarefa h3.concluida {
   text-decoration: line-through;
-  color: #666;
-  opacity: 0.7;
+  color: #8d8d8d;
+  opacity: 1;
 }
 
 .tag {
@@ -130,12 +129,6 @@ select {
   font-size: 18px;
 }
 
-/* Cores de prioridade */
-.prioridade-Alta { border-left-color: #ff4d4d; background: #ffeaea; }
-.prioridade-Média { border-left-color: #f7c04a; background: #fff7e5; }
-.prioridade-Baixa { border-left-color: #65c27c; background: #ebffed; }
-
-/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -175,44 +168,28 @@ select {
   gap: 10px;
 }
 
-.btn-salvar {
-  background-color: #1e50ff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 12px;
-}
-
-.btn-cancelar {
-  background-color: #ccc;
-  color: #222;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 12px;
-}
-
 .menuinferior {
-    position: fixed;
-    bottom: 10px;
-    left: 93%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 20px;
+  position: fixed;
+  bottom: 10px;
+  left: 93%;
+  transform: translateX(-55%);
+  display: flex;
+  gap: 20px;
 }
 
 .menuinferior button {
-    background-color: #5170ff;
-    border: none;
-    border-radius: 15px;
-    padding: 15px;
-    cursor: pointer;
+  background-color: #5170ff;
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  cursor: pointer;
 }
 
 .menuinferior button:hover {
-    background-color: #283593;
+  background-color: #283593;
 }
 
 .menuinferior img {
-    width: 25px;
-    height: 25px;
+  width: 25px;
+  height: 25px;
 }

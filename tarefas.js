@@ -1,4 +1,3 @@
-// === Referências de elementos ===
 const modal = document.getElementById("modal");
 const btnAbrir = document.getElementById("abrirModal");
 const btnCancelar = document.getElementById("cancelar");
@@ -8,12 +7,10 @@ const filtroMateria = document.getElementById("filtroMateria");
 
 let tarefas = [];
 
-// === Abrir e fechar modal ===
 btnAbrir.addEventListener("click", () => modal.style.display = "flex");
 btnCancelar.addEventListener("click", () => modal.style.display = "none");
 window.addEventListener("click", e => { if (e.target === modal) modal.style.display = "none"; });
 
-// === Salvar tarefa ===
 btnSalvar.addEventListener("click", () => {
   const descricao = document.getElementById("descricao").value.trim();
   const materia = document.getElementById("materia").value;
@@ -40,7 +37,6 @@ btnSalvar.addEventListener("click", () => {
     createdAt: new Date().toISOString(),
   };
 
-  // salva no firebase
   db.ref(`tarefas/${usuario.id}`).push(novaTarefa)
     .then(() => {
       alert("Tarefa adicionada!");
@@ -54,7 +50,6 @@ btnSalvar.addEventListener("click", () => {
     });
 });
 
-// === Carregar tarefas do Firebase em tempo real ===
 document.addEventListener("DOMContentLoaded", () => {
   const usuario = JSON.parse(sessionStorage.getItem("usuarioLogado") || "null");
   if (!usuario) return;
@@ -67,12 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// === Renderizar tarefas ===
 function renderTarefas() {
   lista.innerHTML = "";
 
-  const filtro = filtroMateria.value;
-  const filtradas = filtro === "todas" ? tarefas : tarefas.filter(t => t.materia === filtro);
+  const filtro = filtroMateria.value.trim().toLowerCase();
+  const filtradas = filtro === "todas"
+    ? tarefas
+    : tarefas.filter(t => t.materia.toLowerCase().includes(filtro));
 
   if (filtradas.length === 0) {
     lista.innerHTML = "<p style='text-align:center;color:#777;'>Nenhuma tarefa planejada.</p>";
@@ -80,26 +76,26 @@ function renderTarefas() {
   }
 
   filtradas.forEach((tarefa, index) => {
-  const div = document.createElement("div");
-  div.classList.add("tarefa", `prioridade-${tarefa.prioridade.toLowerCase()}`);
+    const div = document.createElement("div");
+    div.classList.add("tarefa");
 
-  div.innerHTML = `
-    <div class="tarefa-info">
-      <input type="checkbox" class="check" data-index="${index}" ${tarefa.concluida ? "checked" : ""}>
-      <h3 class="${tarefa.concluida ? "concluida" : ""}">${tarefa.descricao}</h3>
-      <div class="tags">
-        <span class="tag">${tarefa.materia}</span>
-        <span class="tag">Prioridade: ${tarefa.prioridade}</span>
-        <span class="tag">📅 ${tarefa.data}</span>
+    div.innerHTML = `
+      <div class="tarefa-info">
+        <input type="checkbox" class="check" data-index="${index}" ${tarefa.concluida ? "checked" : ""}>
+        <h3 class="${tarefa.concluida ? "concluida" : ""}">${tarefa.descricao}</h3>
+        <div class="tags">
+          <span class="tag">${tarefa.materia}</span>
+          <span class="tag">Prioridade: ${tarefa.prioridade}</span>
+          <span class="tag">📅 ${tarefa.data}</span>
+        </div>
       </div>
-    </div>
-  `;
+      <button class="delete-btn" data-index="${index}">X</button>
+    `;
 
-  lista.appendChild(div);
-});
+    lista.appendChild(div);
+  });
 }
 
-// === Marcar tarefas como concluídas ===
 lista.addEventListener("change", (e) => {
   if (e.target.classList.contains("check")) {
     const index = e.target.dataset.index;
@@ -107,7 +103,6 @@ lista.addEventListener("change", (e) => {
     const tarefa = tarefas[index];
     const novaSituacao = e.target.checked;
 
-    // Atualiza no Firebase
     db.ref(`tarefas/${usuario.id}`)
       .orderByChild("descricao")
       .equalTo(tarefa.descricao)
@@ -119,5 +114,23 @@ lista.addEventListener("change", (e) => {
   }
 });
 
+lista.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
+    const index = e.target.dataset.index;
+    const usuario = JSON.parse(sessionStorage.getItem("usuarioLogado"));
+    const tarefa = tarefas[index];
+
+    if (confirm(`Deseja realmente excluir a tarefa: "${tarefa.descricao}"?`)) {
+      db.ref(`tarefas/${usuario.id}`)
+        .orderByChild("descricao")
+        .equalTo(tarefa.descricao)
+        .once("value", snapshot => {
+          snapshot.forEach(child => {
+            db.ref(`tarefas/${usuario.id}/${child.key}`).remove();
+          });
+        });
+    }
+  }
+});
 
 filtroMateria.addEventListener("change", renderTarefas);

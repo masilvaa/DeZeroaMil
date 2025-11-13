@@ -53,3 +53,34 @@ function renderTarefas() {
   lista.appendChild(div);
 });
 }
+
+const listaHome = document.getElementById("lista-tarefas");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const usuario = JSON.parse(sessionStorage.getItem("usuarioLogado") || "null");
+  if (!usuario) return;
+
+  const ref = db.ref(`tarefas/${usuario.id}`);
+  ref.on("value", (snapshot) => {
+    const data = snapshot.val();
+    const tarefas = data ? Object.values(data) : [];
+
+    // limpar lista
+    listaHome.innerHTML = "";
+
+    if (tarefas.length === 0) {
+      listaHome.innerHTML = "<p style='text-align:center;color:#777;'>Nenhuma tarefa cadastrada.</p>";
+      return;
+    }
+
+    tarefas.forEach(tarefa => {
+      const div = document.createElement("div");
+      div.classList.add("tarefa-item");
+      div.innerHTML = `
+        <h4>${tarefa.descricao}</h4>
+        <p>${tarefa.materia} | Prioridade: ${tarefa.prioridade} | 📅 ${tarefa.data}</p>
+      `;
+      listaHome.appendChild(div);
+    });
+  });
+});

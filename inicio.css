@@ -73,7 +73,7 @@ main {
 
 .card img, .image-placeholder {
   width: 100%;
-  max-width: 510px;
+  max-width: 470px;
   height: 300px;
   border-radius: 10px;
   background-color: white;
@@ -84,6 +84,7 @@ main {
   justify-content: center;
   font-size: 1.3rem;
   margin-bottom: 15px;
+  margin-left: 15px;
 }
 
 .card p {
